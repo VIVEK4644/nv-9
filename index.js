@@ -1,0 +1,27 @@
+const express = require('express');
+const app = express();
+const cors = require('cors');
+const mongoose = require('mongoose');
+
+// Middleware
+app.use(cors());
+app.use(express.json());
+
+// Routes
+const UserRouter = require('./router/UserRouter');
+app.use('/user', UserRouter);
+
+// MongoDB Connection
+mongoose.connect("mongodb://127.0.0.1:27017/nv")
+.then(() => {
+  console.log("DB Connected");
+})
+.catch((err) => {
+  console.error("DB not connected", err);
+});
+
+// Server
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}`);
+});

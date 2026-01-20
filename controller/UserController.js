@@ -13,7 +13,10 @@ const getapi = async(req,res)=>{
 }
 
 const addUser = async (req, res) => {
+
+    console.log("User added",req.body);
   try {
+    console.log("User added",req.body);
     const user = await UserModel.create(req.body);
 
     res.status(201).json({

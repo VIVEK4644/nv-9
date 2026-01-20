@@ -12,9 +12,27 @@ const getapi = async(req,res)=>{
     });
 }
 
+const addUser = async (req, res) => {
+  try {
+    const user = await UserModel.create(req.body);
+
+    res.status(201).json({
+      message: "User added successfully",
+      data: user
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "Error adding user",
+      error: error.message
+    });
+  }
+};
+
+
 
 
 
 module.exports = {
-    getapi
+    getapi,
+    addUser 
 }

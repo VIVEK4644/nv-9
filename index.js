@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const mongoose = require('mongoose');
+require('dotenv').config();
 const { MongoClient, ServerApiVersion } = require('mongodb');
 
 
@@ -16,13 +17,24 @@ const UserRouter = require('./router/UserRouter');
 app.use('/user', UserRouter);
 
 // MongoDB Connection
-mongoose.connect("mongodb://127.0.0.1:27017/nv")
-.then(() => {
-  console.log("DB Connected");
-})
-.catch((err) => {
-  console.error("DB not connected", err);
-});
+// mongoose.connect("mongodb://127.0.0.1:27017/nv")
+// .then(() => {
+//   console.log("DB Connected");
+// })
+// .catch((err) => {
+//   console.error("DB not connected", err);
+// });
+
+
+//database
+require('dotenv').config();
+mongoose.connect(
+  "mongodb+srv://vivekkumar94293377_db_user:1EdYnxgqT2WEVd5C@cluster0.vhrssnk.mongodb.net/nv"
+)
+.then(() => console.log("MongoDB Atlas Connected"))
+.catch(err => console.error("MongoDB connection error:", err));
+
+
 
 // Server
 const port = process.env.PORT || 3000;
@@ -35,30 +47,3 @@ app.listen(port, () => {
 
 
 
-// mogodb database
-
-
-const uri = "mongodb+srv://varnwalvivek4644_db_user:<db_password>@cluster0.m19arsn.mongodb.net/?appName=Cluster0";
-
-// Create a MongoClient with a MongoClientOptions object to set the Stable API version
-const client = new MongoClient(uri, {
-  serverApi: {
-    version: ServerApiVersion.v1,
-    strict: true,
-    deprecationErrors: true,
-  }
-});
-
-async function run() {
-  try {
-    // Connect the client to the server	(optional starting in v4.7)
-    await client.connect();
-    // Send a ping to confirm a successful connection
-    await client.db("admin").command({ ping: 1 });
-    console.log("Pinged your deployment. You successfully connected to MongoDB!");
-  } finally {
-    // Ensures that the client will close when you finish/error
-    await client.close();
-  }
-}
-run().catch(console.dir);

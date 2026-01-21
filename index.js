@@ -3,7 +3,7 @@ const app = express();
 const cors = require('cors');
 const mongoose = require('mongoose');
 require('dotenv').config();
-const { MongoClient, ServerApiVersion } = require('mongodb');
+
 
 
 
@@ -17,6 +17,7 @@ const UserRouter = require('./router/UserRouter');
 app.use('/user', UserRouter);
 
 // MongoDB Connection
+
 // mongoose.connect("mongodb://127.0.0.1:27017/nv")
 // .then(() => {
 //   console.log("DB Connected");
@@ -26,7 +27,7 @@ app.use('/user', UserRouter);
 // });
 
 
-//database
+// database connection
 mongoose.connect(
   "mongodb+srv://vivekkumar94293377_db_user:1EdYnxgqT2WEVd5C@cluster0.vhrssnk.mongodb.net/nv"
 )
@@ -36,9 +37,10 @@ mongoose.connect(
 
 
 // Server
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
+const PORT = process.env.PORT || 3000;
+// const port = 3000;
+app.listen(PORT, () => {
+  console.log(`Server running at http://localhost:${PORT}`);
 });
 
 

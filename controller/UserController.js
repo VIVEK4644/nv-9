@@ -43,5 +43,5 @@ const getapi = async (req, res) => {
 
 module.exports = {
     getapi,
-    addUser 
+     
 }

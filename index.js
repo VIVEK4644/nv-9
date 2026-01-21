@@ -27,7 +27,6 @@ app.use('/user', UserRouter);
 
 
 //database
-require('dotenv').config();
 mongoose.connect(
   "mongodb+srv://vivekkumar94293377_db_user:1EdYnxgqT2WEVd5C@cluster0.vhrssnk.mongodb.net/nv"
 )

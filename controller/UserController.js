@@ -1,23 +1,31 @@
-const UserModel = require("../model/UserModel");
+const Usermodel = require("../model/UserModel");
 
 
 
 
-const getapi = async(req,res)=>{
+const getapi = async (req, res) => {
+  try {
     console.log("Hello World");
-    const user = await UserModel.find();
-    res.json({
-        message:"Hello World",
-        data:user
+    const user = await Usermodel.find();
+
+    res.status(200).json({
+      message: "Hello World",
+      data: user
     });
-}
+  } catch (error) {
+    res.status(500).json({
+      message: "Failed to fetch users",
+      error: error.message
+    });
+  }
+};
 
 const addUser = async (req, res) => {
 
     console.log("User added",req.body);
   try {
     console.log("User added",req.body);
-    const user = await UserModel.create(req.body);
+    const user = await Usermodel.create(req.body);
 
     res.status(201).json({
       message: "User added successfully",

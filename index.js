@@ -29,12 +29,7 @@ app.use('/user', UserRouter);
 
 
 mongoose.connect(
-     "mongodb+srv://vivekkumar94293377_db_user:1EdYnxgqT2WEVd5C@cluster0.vhrssnk.mongodb.net/nav",
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  }
-)
+     "mongodb+srv://vivekkumar94293377_db_user:1EdYnxgqT2WEVd5C@cluster0.vhrssnk.mongodb.net/nav")
 
 .then(() => console.log("MongoDB Atlas Connected"))
 .catch(err => console.error("MongoDB connection error:", err));

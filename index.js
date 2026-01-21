@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
+cons
 const mongoose = require('mongoose');
 require('dotenv').config();
 
@@ -28,9 +29,17 @@ app.use('/user', UserRouter);
 
 
 // database connection
+// mongoose.connect(
+//   "mongodb+srv://vivekkumar94293377_db_user:1EdYnxgqT2WEVd5C@cluster0.vhrssnk.mongodb.net/nav"
+// )
 mongoose.connect(
-  "mongodb+srv://vivekkumar94293377_db_user:1EdYnxgqT2WEVd5C@cluster0.vhrssnk.mongodb.net/nav"
+  "mongodb+srv://vivekkumar94293377_db_user:1EdYnxgqT2WEVd5C@cluster0.vhrssnk.mongodb.net/nav",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  }
 )
+
 .then(() => console.log("MongoDB Atlas Connected"))
 .catch(err => console.error("MongoDB connection error:", err));
 
